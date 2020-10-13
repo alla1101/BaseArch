@@ -1,0 +1,30 @@
+{
+    "name": "alla1101/basearch",
+    "description": "Package to build powerful low level components for a laravel application",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alla Barkat",
+            "email": "a2la1101@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Alla\\BaseArch\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Alla\\BaseArch\\BaseArchServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "illuminate/support": "7.x",
+        "illuminate/console": "7.x",
+        "illuminate/filesystem": "7.x"
+    }
+}
