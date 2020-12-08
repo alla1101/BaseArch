@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ActiveScope implements Scope
 {
-    public static $activate_scope = true;
+    public static $injectedVariables = [];
 
-    public static function ActivateScope($activate = true)
+    public static function ActivateScope($injectedVariables = [])
     {
-        static::$activate_scope = $activate;
+        static::$injectedVariables = $injectedVariables;
     }
     /**
      * Apply the scope to a given Eloquent query builder.
@@ -23,8 +23,16 @@ class ActiveScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        if (static::$activate_scope) {
-            $builder->where($model->getIsDisabledColumn(), '=', false);
+        $pattern = "/^(" . implode("|", static::$injectedArray) . ")$/";
+
+        $scope_variables = $model->getScopeVariablesColumn();
+
+        $variables_to_remove = preg_grep($pattern, $scope_variables);
+
+        $remaining_scope_variables = array_diff_assoc($scope_variables, $variables_to_remove);
+
+        foreach ($remaining_scope_variables as $scope_variable) {
+            $builder->where($scope_variable, '=', false);
         }
     }
 }

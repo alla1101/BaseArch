@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class DisableActiveScopeMiddleware
 {
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, ...$injectedVariables)
     {
-        ActiveScope::ActivateScope(false);
+        ActiveScope::ActivateScope($injectedVariables);
         return $next($request);
     }
 }

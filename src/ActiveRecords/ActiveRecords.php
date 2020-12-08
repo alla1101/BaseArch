@@ -21,18 +21,8 @@ trait ActiveRecords
      *
      * @return string
      */
-    public function getIsDisabledColumn()
+    public function getScopeVariablesColumn()
     {
-        return defined('static::IS_DISABLED') ? static::IS_DISABLED : 'is_disabled';
-    }
-
-    /**
-     * Get the fully qualified "deleted at" column.
-     *
-     * @return string
-     */
-    public function getQualifiedISDisabledColumn()
-    {
-        return $this->qualifyColumn($this->getIsDisabledColumn());
+        return defined('static::scope_variables') ? static::scope_variables : [];
     }
 }

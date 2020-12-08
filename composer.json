@@ -25,6 +25,8 @@
     "require": {
         "illuminate/support": "7.x",
         "illuminate/console": "7.x",
-        "illuminate/filesystem": "7.x"
+        "illuminate/filesystem": "7.x",
+        "illuminate/database": "7.x",
+        "spatie/laravel-fractal": "dev-master"
     }
 }
